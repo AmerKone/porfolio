@@ -15,7 +15,7 @@ window.PORTFOLIO.profile = {
              fr: "Ingénieur IA · IA agentique &amp; RAG · Paris" },
 
   lede: {
-    en: "I build <strong>multi-agent systems and multimodal RAG pipelines</strong> that hold up in production: LangGraph orchestration, tools served over MCP, hybrid retrieval with cited sources, guardrails, evaluation datasets, and the FastAPI, Docker and CI/CD around them.",
+    en: "I build <strong>multi-agent systems and multimodal RAG pipelines</strong> that hold up in production: LangGraph/ADK orchestration, tools served over MCP, hybrid retrieval with cited sources, guardrails, evaluation datasets, and the FastAPI, Docker and CI/CD around them.",
     fr: "Je conçois des <strong>systèmes multi-agents et des pipelines RAG multimodaux</strong> qui tiennent en production : orchestration LangGraph, outils servis via MCP, recherche hybride avec sources citées, guardrails, datasets d'évaluation, et tout ce qui les entoure en FastAPI, Docker et CI/CD."
   },
 
