@@ -193,7 +193,7 @@
     }).join("") + "</div>";
     if (edu && edu.length) {
       h += '<div class="edu">' + edu.map(function (e) {
-        return "<div><b>" + t(e.title) + "</b><span>" + t(e.sub) + "</span></div>";
+        return "<div><b>" + t(e.title) + "</b>" + (e.sub ? "<span>" + t(e.sub) + "</span>" : "") + "</div>";
       }).join("") + "</div>";
     }
     return h;

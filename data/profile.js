@@ -21,7 +21,7 @@ window.PORTFOLIO.profile = {
 
   // Buttons under the intro text. primary: true gives the amber button.
   buttons: [
-    { label: { en: "See the systems", fr: "Voir les systèmes" }, href: "#work", primary: true },
+    { label: { en: "My work", fr: "Mon travail" }, href: "#work", primary: true },
     { label: "GitHub",   href: "https://www.github.com/AmerKone" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/kaouaneameur" }
   ],
@@ -68,12 +68,12 @@ window.PORTFOLIO.profile = {
       sub: "Université Paris-Saclay" },
     { title: { en: "Engineering degree, AI &amp; Data", fr: "Diplôme d'ingénieur, IA &amp; Data" },
       sub: "École Supérieure d'Informatique (ESI)" },
-    { title: "AWS Certified ML Engineer, Associate",
-      sub: { en: "French and English fluent · Arabic native", fr: "Français et anglais courants · Arabe natif" } }
+    { title: "AWS Certified ML Engineer, Associate" }
   ],
 
   contact: {
-    title: { en: "Have an agent or RAG system to build?", fr: "Un système d'agents ou de RAG à construire ?" },
+    title: { en: "Do you have an opportunity around agents, RAG and AI systems? Contact me.",
+             fr: "Vous avez une opportunité autour des agents, du RAG et des systèmes d'IA ? Contactez-moi." },
     text: { en: "I am based in Paris and open to AI Engineer roles and missions around agentic AI, RAG and LLM systems.",
             fr: "Je suis basé à Paris et ouvert aux postes et missions d'AI Engineer autour de l'IA agentique, du RAG et des systèmes LLM." },
     links: [
