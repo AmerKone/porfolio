@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#101624"/>
+  <!-- antenna: data node on top of the agent -->
+  <path d="M32 22V14" stroke="#ffb347" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="11" r="4.5" fill="#6fb1ff"/>
+  <!-- ears -->
+  <rect x="8" y="31" width="5" height="12" rx="2" fill="#ffb347"/>
+  <rect x="51" y="31" width="5" height="12" rx="2" fill="#ffb347"/>
+  <!-- head -->
+  <rect x="14" y="22" width="36" height="30" rx="9" fill="#ffb347"/>
+  <!-- eyes -->
+  <rect x="21" y="32" width="8" height="9" rx="2.5" fill="#101624"/>
+  <rect x="35" y="32" width="8" height="9" rx="2.5" fill="#101624"/>
+  <!-- mouth -->
+  <path d="M26 46H38" stroke="#101624" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
