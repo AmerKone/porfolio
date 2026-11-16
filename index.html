@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ameur Kaouane Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="progress"></div>
+
+<!-- Arrow heads shared by every architecture diagram -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="aa" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="#ffb347"/></marker>
+  <marker id="ad" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="#6fb1ff"/></marker>
+</defs></svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" id="brand"></a>
+    <div class="nav-right">
+      <nav aria-label="Sections" id="nav"></nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" id="lang-en" aria-pressed="true">EN</button>
+        <button type="button" id="lang-fr" aria-pressed="false">FR</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Everything inside <main> is generated from the files in /data -->
+<main id="top"></main>
+
+<footer><div class="wrap" id="footer"></div></footer>
+
+<!-- Content -->
+<script src="data/profile.js"></script>
+<script src="data/experiences.js"></script>
+<script src="data/projects.js"></script>
+<script src="data/skills.js"></script>
+<!-- Code -->
+<script src="js/render.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
