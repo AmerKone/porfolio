@@ -8,9 +8,16 @@
 
   // Fixed interface strings (not content).
   var UI = {
+    simple: { en: "In short", fr: "En bref" },
+    showTech: { en: "See the technical work", fr: "Voir le travail technique" },
+    hideTech: { en: "Hide the technical work", fr: "Masquer le travail technique" },
+    built: { en: "What I built", fr: "Ce que j'ai construit" },
     architecture: { en: "Architecture", fr: "Architecture" },
     stack: { en: "Stack, and why each piece is there", fr: "La stack, et pourquoi chaque brique est là" }
   };
+
+  // Ids of case studies whose technical block is open (kept across language switches).
+  var openCases = {};
 
   // Pick the right language from a string or an { en, fr } object.
   function t(x) {
@@ -96,10 +103,32 @@
     h += '<div class="case-top"><h3>' + t(it.title) + "</h3>" + right + "</div>";
     if (it.role) h += '<div class="role">' + t(it.role) + "</div>";
 
-    if (it.intro || it.built) {
+    // Plain-language view, always visible
+    if (it.intro || it.simple) {
       h += '<div class="case-body"><div>' + (it.intro || []).map(function (p) { return "<p>" + t(p) + "</p>"; }).join("") + "</div>";
-      if (it.built) h += '<ul class="built">' + it.built.map(function (b) { return "<li>" + t(b) + "</li>"; }).join("") + "</ul>";
+      if (it.simple) {
+        h += '<div><div class="mini-label">' + t(UI.simple) + '</div><ul class="built simple">' +
+          it.simple.map(function (b) { return "<li>" + t(b) + "</li>"; }).join("") + "</ul></div>";
+      }
       h += "</div>";
+    }
+
+    // Technical view, behind a button
+    var tech = techHtml(it);
+    if (tech) {
+      var open = !!openCases[it.id];
+      h += '<div class="case-toggle"><button type="button" class="btn" data-toggle="' + it.id + '" aria-expanded="' + open + '" aria-controls="tech-' + it.id + '">' +
+        '<span class="show">' + t(UI.showTech) + '</span><span class="hide">' + t(UI.hideTech) + "</span></button></div>";
+      h += '<div class="tech-details" id="tech-' + it.id + '"' + (open ? "" : " hidden") + ">" + tech + "</div>";
+    }
+    return h + "</article>";
+  }
+
+  function techHtml(it) {
+    var h = "";
+    if (it.built) {
+      h += '<div class="label">' + t(UI.built) + '</div><ul class="built cols">' +
+        it.built.map(function (b) { return "<li>" + t(b) + "</li>"; }).join("") + "</ul>";
     }
     if (it.facts) {
       h += '<div class="facts">' + it.facts.map(function (f) {
@@ -118,7 +147,18 @@
           '<div class="because">' + t(s.because) + "</div></div>";
       }).join("") + "</div>";
     }
-    return h + "</article>";
+    return h;
+  }
+
+  // Open or close the technical block of one case study without re-rendering.
+  function toggleTech(id) {
+    var open = !openCases[id];
+    openCases[id] = open;
+    var block = document.getElementById("tech-" + id);
+    var btn = document.querySelector('[data-toggle="' + id + '"]');
+    if (block) block.hidden = !open;
+    if (btn) btn.setAttribute("aria-expanded", open);
+    return open;
   }
 
   /* ---------- compact rows and cards ---------- */
@@ -203,5 +243,5 @@
     document.documentElement.lang = lang;
   }
 
-  window.PortfolioRender = { render: render };
+  window.PortfolioRender = { render: render, toggleTech: toggleTech };
 })();

@@ -17,7 +17,7 @@ js/main.js            language toggle, scroll progress, nav highlight
 Every text can be a plain string (same in both languages) or `{ en: "...", fr: "..." }`.
 HTML like `<strong>` is allowed inside strings.
 
-## Add an experience
+## Add an experiences
 
 Open `data/experiences.js` and add an object to `items` (newest first).
 
@@ -37,7 +37,9 @@ Open `data/experiences.js` and add an object to `items` (newest first).
 ```
 
 **Full case study** (shown in the "Work" section): same fields plus `featured: true`, a `role`
-line, `intro` paragraphs, `built` bullets, and optionally `diagram` and `stack`.
+line, `intro` paragraphs, `simple` bullets (plain language, always visible under "In short"),
+and the technical part shown behind the "See the technical work" button: `built` bullets,
+and optionally `facts`, `diagram`, `tools` and `stack`.
 Copy the Key2China or WiXar object and edit it. Fields you leave out are simply not displayed.
 
 ```js
@@ -50,6 +52,7 @@ Copy the Key2China or WiXar object and edit it. Fields you leave out are simply 
   location: { en: "Lyon, remote", fr: "Lyon, à distance" },
   role: { en: "AI Engineer · team of 4", fr: "Ingénieur IA · équipe de 4" },
   intro: [ { en: "Paragraph 1", fr: "Paragraphe 1" }, { en: "Paragraph 2", fr: "Paragraphe 2" } ],
+  simple: [ { en: "What it does, for a non-technical reader.", fr: "Ce que ça fait, pour un lecteur non technique." } ],
   built: [ { en: "<strong>Thing</strong> you built.", fr: "<strong>Chose</strong> construite." } ],
   stack: [
     { tech: "LangGraph", kind: "agent", tag: "orchestration",

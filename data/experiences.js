@@ -15,8 +15,8 @@ window.PORTFOLIO.experiences = {
   section: {
     title: { en: "Agent systems I built for clients",
              fr: "Les systèmes d'agents que j'ai construits pour des clients" },
-    text: { en: "Two missions, two different agent problems. For each one: what the system does, how it is wired, and why each technology is there.",
-            fr: "Deux missions, deux problèmes d'agents différents. Pour chacune : ce que fait le système, comment il est câblé, et pourquoi chaque technologie est là." }
+    text: { en: "Two missions, two different agent problems. For each one: what the system does in plain words, and one click away, how it is wired and why each technology is there.",
+            fr: "Deux missions, deux problèmes d'agents différents. Pour chacune : ce que fait le système en termes simples, et en un clic, comment il est câblé et pourquoi chaque technologie est là." }
   },
 
   items: [
@@ -39,6 +39,17 @@ window.PORTFOLIO.experiences = {
           fr: "Les réponses dont ils ont besoin se trouvent à deux endroits : <strong>les rapports de marché et documents réglementaires</strong> (PDF, scans, tableaux, figures) et <strong>les données clients structurées en SQL</strong>. J'ai conçu et livré le système qui répond à partir des deux et cite ses sources." }
       ],
 
+      // Plain-language bullets, always visible ("In short").
+      simple: [
+        { en: "A consultant asks a question in plain language and gets an answer drawn from hundreds of reports and the client's own data, with the exact page, table or figure it came from.",
+          fr: "Un consultant pose une question en langage courant et obtient une réponse tirée de centaines de rapports et des données du client, avec la page, le tableau ou la figure exacts d'où elle vient." },
+        { en: "Hours of reading and cross-checking become minutes, and every answer can be verified.",
+          fr: "Des heures de lecture et de recoupement deviennent quelques minutes, et chaque réponse peut être vérifiée." },
+        { en: "Everything runs on the client's own servers, so confidential data never leaves the company.",
+          fr: "Tout tourne sur les serveurs du client, donc les données confidentielles ne quittent jamais l'entreprise." }
+      ],
+
+      // Technical bullets, shown behind the "See the technical work" button.
       built: [
         { en: "<strong>Multi-agent orchestration</strong> in LangGraph: a multimodal RAG agent and a SQL agent, combined into one sourced answer.",
           fr: "<strong>Orchestration multi-agents</strong> avec LangGraph : un agent RAG multimodal et un agent SQL, combinés en une seule réponse sourcée." },
@@ -185,6 +196,15 @@ window.PORTFOLIO.experiences = {
           fr: "WiXar édite des logiciels d'apprentissage immersif et d'intelligence artificielle. Construire une scène VR impose de modéliser ses objets 3D à la main, un travail long pour les artistes 3D." },
         { en: "I built a <strong>multi-agent system that generates 3D models from a natural-language description</strong>. It plans the object, builds it in Blender through code, checks the mesh, and repairs its own mistakes.",
           fr: "J'ai construit un <strong>système multi-agents qui génère des modèles 3D à partir d'une description en langage naturel</strong>. Il planifie l'objet, le construit dans Blender par le code, contrôle le maillage et corrige ses propres erreurs." }
+      ],
+
+      simple: [
+        { en: "A 3D artist describes an object in one sentence, and the system builds the 3D model on its own.",
+          fr: "Un artiste 3D décrit un objet en une phrase, et le système construit le modèle 3D tout seul." },
+        { en: "It checks its own result and fixes its mistakes before handing the model over.",
+          fr: "Il contrôle son propre résultat et corrige ses erreurs avant de livrer le modèle." },
+        { en: "Modelling that took hours by hand takes minutes, so the team spends its time on the scenes themselves.",
+          fr: "Une modélisation qui prenait des heures à la main prend quelques minutes, et l'équipe consacre son temps aux scènes elles-mêmes." }
       ],
 
       built: [

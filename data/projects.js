@@ -41,6 +41,16 @@ window.PORTFOLIO.projects = {
           fr: "Les faits sur l'utilisateur viennent du SQL via les outils. Les connaissances en entraînement et en nutrition viennent du RAG. Séparer les deux est ce qui empêche le coach d'inventer des chiffres." }
       ],
 
+      // Plain-language bullets, always visible ("In short").
+      simple: [
+        { en: "You talk to the coach like a person. It writes your program, logs your workouts and meals by voice, and tells you what weight to lift next.",
+          fr: "Vous parlez au coach comme à une personne. Il rédige votre programme, enregistre vos séances et vos repas à la voix, et vous dit quelle charge soulever ensuite." },
+        { en: "It knows your history, so its advice is based on your real numbers, never invented ones.",
+          fr: "Il connaît votre historique, donc ses conseils reposent sur vos vrais chiffres, jamais sur des chiffres inventés." },
+        { en: "It spots medical red flags and refuses to give risky advice.",
+          fr: "Il repère les signaux d'alerte médicaux et refuse de donner des conseils risqués." }
+      ],
+
       built: [
         { en: "<strong>Tool-calling agent</strong> with 10 tools and a bounded reasoning loop, plus an audit log of every call.",
           fr: "<strong>Agent à appels d'outils</strong> avec 10 outils et une boucle de raisonnement bornée, plus un journal d'audit de chaque appel." },

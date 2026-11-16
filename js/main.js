@@ -30,6 +30,12 @@
   bEn.addEventListener("click", function () { setLang("en", true); });
   bFr.addEventListener("click", function () { setLang("fr", true); });
 
+  // "See the technical work" buttons (event delegation, survives re-renders)
+  document.getElementById("top").addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-toggle]");
+    if (btn) window.PortfolioRender.toggleTech(btn.getAttribute("data-toggle"));
+  });
+
   // Progress bar
   var bar = document.getElementById("progress");
   function onScroll() {
