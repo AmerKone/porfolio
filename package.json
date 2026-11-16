@@ -1,0 +1,11 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "description": "Static portfolio site, content in /data, no build step",
+  "scripts": {
+    "test": "node --check js/render.js && node --check js/main.js && node scripts/check.js"
+  },
+  "devDependencies": {
+    "jsdom": "^25.0.1"
+  }
+}
