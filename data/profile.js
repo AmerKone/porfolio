@@ -19,7 +19,7 @@ window.PORTFOLIO.profile = {
     fr: "Je conçois des <strong>systèmes multi-agents et des pipelines RAG multimodaux</strong> qui tiennent en production : orchestration LangGraph, outils servis via MCP, recherche hybride avec sources citées, guardrails, datasets d'évaluation, et tout ce qui les entoure en FastAPI, Docker et CI/CD."
   },
 
-  // Buttons under the intro text. primary: true gives the amber button.
+  // Buttons under the intro text. primary: true gives the filled button.
   buttons: [
     { label: { en: "My work", fr: "Mon travail" }, href: "#work", primary: true },
     { label: "GitHub",   href: "https://www.github.com/AmerKone" },
@@ -30,7 +30,7 @@ window.PORTFOLIO.profile = {
   tag: { big: { en: "3 years", fr: "3 ans" },
          text: { en: "Python, backend and AI systems", fr: "Python, backend et systèmes d'IA" } },
 
-  // The animated "run trace" under the hero. kind: "agent" (amber) or "data" (blue).
+  // The animated "run trace" under the hero. kind: "agent" (violet) or "data" (teal).
   trace: {
     aria: "Example run of the Key2China agent system",
     title: { en: "run · market-study assistant", fr: "exécution · assistant d'études de marché" },

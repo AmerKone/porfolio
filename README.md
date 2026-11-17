@@ -61,7 +61,7 @@ Copy the Key2China or WiXar object and edit it. Fields you leave out are simply 
 },
 ```
 
-`kind` is `"agent"` (amber) or `"data"` (blue). A `diagram` is an inline SVG string with a
+`kind` is `"agent"` (violet) or `"data"` (teal). A `diagram` is an inline SVG string with a
 `labels` map for the French version of its text; see the existing ones.
 
 ## Add a project

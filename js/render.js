@@ -13,7 +13,9 @@
     hideTech: { en: "Hide the technical work", fr: "Masquer le travail technique" },
     built: { en: "What I built", fr: "Ce que j'ai construit" },
     architecture: { en: "Architecture", fr: "Architecture" },
-    stack: { en: "Stack, and why each piece is there", fr: "La stack, et pourquoi chaque brique est là" }
+    stack: { en: "Stack, and why each piece is there", fr: "La stack, et pourquoi chaque brique est là" },
+    laneAgent: { en: "Agent", fr: "Agent" },
+    laneData: { en: "Data", fr: "Données" }
   };
 
   // Ids of case studies whose technical block is open (kept across language switches).
@@ -25,7 +27,6 @@
     if (typeof x === "string") return x;
     return x[lang] || x.en || "";
   }
-  function pad(n) { return (n < 10 ? "0" : "") + n; }
 
   /* ---------- small building blocks ---------- */
 
@@ -56,47 +57,65 @@
     }
   }
 
-  function sectionHead(num, title, text) {
-    return '<div class="sec-head"><span class="mono">' + pad(num) + "</span><h2>" + t(title) + "</h2>" +
+  function sectionHead(title, text) {
+    return '<div class="sec-head"><h2>' + t(title) + "</h2>" +
       (text ? "<p>" + t(text) + "</p>" : "") + "</div>";
   }
 
-  function section(id, num, head, body) {
-    return '<section id="' + id + '"><div class="wrap">' + sectionHead(num, head.title, head.text) + body + "</div></section>";
+  function section(id, head, body) {
+    return '<section id="' + id + '"><div class="wrap">' + sectionHead(head.title, head.text) + body + "</div></section>";
   }
 
   /* ---------- hero ---------- */
 
   function hero(P) {
-    var h = '<div class="wrap"><div class="hero"><div class="hero-grid"><div>';
-    h += '<div class="eyebrow"><i></i>' + t(P.eyebrow) + "</div>";
-    h += "<h1>" + P.firstName + " <span>" + P.lastName + "</span></h1>";
+    var h = '<div class="wrap hero">';
+    h += '<h1 class="name"><span>' + P.firstName + "</span> <span>" + P.lastName + "</span></h1>";
+    h += '<div class="hero-row"><div class="hero-copy">';
+    h += '<p class="headline">' + t(P.eyebrow) + "</p>";
     h += '<p class="lede">' + t(P.lede) + "</p>";
     h += '<div class="cta">' + (P.buttons || []).map(function (b) {
       return '<a class="btn' + (b.primary ? " primary" : "") + '" href="' + b.href + '">' + t(b.label) + "</a>";
     }).join("") + "</div></div>";
     if (P.portrait) {
-      h += '<div class="portrait"><img src="' + P.portrait.src + '" alt="' + P.portrait.alt + '">';
-      if (P.tag) h += '<div class="tag"><b>' + t(P.tag.big) + "</b>" + t(P.tag.text) + "</div>";
-      h += "</div>";
+      h += '<figure class="portrait"><img src="' + P.portrait.src + '" alt="' + P.portrait.alt + '">';
+      if (P.tag) h += "<figcaption><b>" + t(P.tag.big) + "</b> " + t(P.tag.text) + "</figcaption>";
+      h += "</figure>";
     }
-    h += "</div>"; // hero-grid
-    if (P.trace) {
-      h += '<div class="trace" aria-label="' + t(P.trace.aria) + '">';
-      h += '<div class="trace-head"><span>' + t(P.trace.title) + "</span><span>" + t(P.trace.stack) + "</span></div>";
-      h += '<ol id="trace">' + P.trace.steps.map(function (s, i) {
-        return '<li class="' + (i === 0 ? "on" : "") + '"><span class="k' + (s.kind === "data" ? " d" : "") + '">' + s.key +
-          '</span><span class="v">' + t(s.text) + "</span></li>";
-      }).join("") + "</ol></div>";
-    }
-    return h + "</div></div>";
+    h += "</div>"; // hero-row
+    if (P.trace) h += runGraph(P.trace);
+    return h + "</div>";
+  }
+
+  // The hero's live agent graph: one node per step, on an agent lane or a data lane.
+  // main.js moves the pulse from node to node; clicking a node shows that step.
+  function runGraph(T) {
+    var steps = T.steps, n = steps.length;
+    var lane = function (s) { return s.kind === "data" ? 1 : 0; };
+    var wide = steps.map(function (s, i) { return (i * 100 + 50) + "," + (lane(s) ? 75 : 25); }).join(" ");
+    var tall = steps.map(function (s, i) { return (lane(s) ? 75 : 25) + "," + (i * 100 + 50); }).join(" ");
+
+    var h = '<div class="run" aria-label="' + t(T.aria) + '" role="group">';
+    h += '<div class="run-head"><span>' + t(T.title) + '</span><span class="run-stack">' + t(T.stack) + "</span></div>";
+    h += '<div class="track" id="track" style="--n:' + n + ';--at:0;--lane:' + lane(steps[0]) + '">';
+    h += '<span class="lane-name a">' + t(UI.laneAgent) + '</span><span class="lane-name d">' + t(UI.laneData) + "</span>";
+    h += '<svg class="wire wide" viewBox="0 0 ' + n * 100 + ' 100" preserveAspectRatio="none" aria-hidden="true"><polyline points="' + wide + '"/></svg>';
+    h += '<svg class="wire tall" viewBox="0 0 100 ' + n * 100 + '" preserveAspectRatio="none" aria-hidden="true"><polyline points="' + tall + '"/></svg>';
+    h += '<span class="pulse" aria-hidden="true"></span>';
+    h += "<ol>" + steps.map(function (s, i) {
+      return '<li class="' + (lane(s) ? "d" : "a") + (i === 0 ? " on" : "") + '" style="--i:' + i + ";--lane:" + lane(s) + '">' +
+        '<button type="button" data-step="' + i + '" aria-pressed="' + (i === 0) + '">' + s.key +
+        '<span class="v">' + t(s.text) + "</span></button></li>";
+    }).join("") + "</ol></div>";
+    h += '<p class="run-caption" id="run-caption"><b>' + steps[0].key + "</b> " + t(steps[0].text) + "</p>";
+    return h + "</div>";
   }
 
   /* ---------- case study (featured experience or featured project) ---------- */
 
   function caseHtml(it) {
     var right = "";
-    if (it.period) right = '<span class="meta">' + t(it.period) + (it.location ? " · " + t(it.location) : "") + "</span>";
+    if (it.period) right = '<span class="meta"><span>' + t(it.period) + "</span>" + (it.location ? "<span>" + t(it.location) + "</span>" : "") + "</span>";
     else if (it.link) right = '<a class="btn" href="' + it.link.href + '">' + t(it.link.label) + "</a>";
 
     var h = '<article class="case" id="case-' + it.id + '">';
@@ -216,25 +235,25 @@
     var P = D.profile, E = D.experiences, PR = D.projects, S = D.skills;
 
     document.title = P.pageTitle || (P.firstName + " " + P.lastName);
-    document.getElementById("brand").innerHTML = "<b>&gt;</b> " + P.brand;
+    document.getElementById("brand").innerHTML = '<img src="assets/favicon-192.png" alt="" width="28" height="28"><span>' + P.brand + "</span>";
     document.getElementById("nav").innerHTML = P.nav.map(function (n) {
       return '<a href="' + n.href + '">' + t(n.label) + "</a>";
     }).join("");
 
-    var n = 0, html = hero(P);
+    var html = hero(P);
 
     var featuredExp = E.items.filter(function (e) { return e.featured; });
     var earlierExp = E.items.filter(function (e) { return !e.featured; });
-    if (featuredExp.length) html += section("work", ++n, E.section, featuredExp.map(caseHtml).join(""));
+    if (featuredExp.length) html += section("work", E.section, featuredExp.map(caseHtml).join(""));
 
     PR.items.filter(function (p) { return p.featured; }).forEach(function (p) {
-      html += section(p.id, ++n, { title: p.headline || p.title, text: p.summary }, caseHtml(p));
+      html += section(p.id, { title: p.headline || p.title, text: p.summary }, caseHtml(p));
     });
 
     var cards = PR.items.filter(function (p) { return !p.featured; });
-    if (cards.length || earlierExp.length) html += section("projects", ++n, PR.section, cardsHtml(cards) + rowsHtml(earlierExp));
+    if (cards.length || earlierExp.length) html += section("projects", PR.section, cardsHtml(cards) + rowsHtml(earlierExp));
 
-    html += section("stack", ++n, S.section, skillsHtml(S, P.education));
+    html += section("stack", S.section, skillsHtml(S, P.education));
     html += contactHtml(P.contact);
 
     document.getElementById("top").innerHTML = html;

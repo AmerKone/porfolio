@@ -136,7 +136,7 @@ window.PORTFOLIO.experiences = {
         ]
       },
 
-      // "Stack, and why each piece is there". kind: "agent" (amber) or "data" (blue).
+      // "Stack, and why each piece is there". kind: "agent" (violet) or "data" (teal).
       stack: [
         { tech: "LangGraph", kind: "agent", tag: "orchestration",
           because: { en: "The orchestrator has to choose between document search, SQL, or both, then merge the results. A graph with explicit nodes and state makes that routing visible, testable and easy to debug node by node.",

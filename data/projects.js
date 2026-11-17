@@ -126,7 +126,7 @@ window.PORTFOLIO.projects = {
         ]
       },
 
-      // Chips list (optional). kind: "write" (amber border) or "read" (blue border).
+      // Chips list (optional). kind: "write" (violet border) or "read" (teal border).
       tools: {
         label: { en: "The 10 tools the agent can call", fr: "Les 10 outils que l'agent peut appeler" },
         items: [
