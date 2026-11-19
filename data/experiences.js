@@ -27,7 +27,7 @@ window.PORTFOLIO.experiences = {
       featured: true,
       company: "Key2China",
       title: { en: "Key2China: market-study assistant", fr: "Key2China : assistant d'études de marché" },
-      period: { en: "Sep 2025 – Present", fr: "Sep 2025 – Aujourd'hui" },
+      period: { en: "Sep 2025 – Oct 2026", fr: "Sep 2025 – Oct 2026" },
       location: { en: "Amsterdam, remote", fr: "Amsterdam, à distance" },
       role: { en: "AI Engineer, Agentic AI, RAG &amp; LLMs · sole AI engineer in a team of 7",
               fr: "AI Engineer, Agentic AI, RAG &amp; LLMs · seul ingénieur IA dans une équipe de 7" },
